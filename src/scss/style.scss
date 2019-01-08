@@ -1,0 +1,23 @@
+
+$primaryColor: #374892;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.box {
+  width: 200px;
+  height: 200px;
+  border: 10px solid $primaryColor;
+  border-radius: 50%;
+}
+
+body {
+  background-color: #f2f2f2;
+}
+
+img {
+  max-width: 100%;
+}
