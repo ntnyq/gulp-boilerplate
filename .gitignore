@@ -1,6 +1,5 @@
 .DS_Store
-node_module/
-dist/
+node_modules/
 
 # Log files
 npm-debug.log*
@@ -15,3 +14,6 @@ yarn-error.log*
 *.njsproj
 *.sln
 *.sw*
+
+# Lint report file
+sass-error.html*

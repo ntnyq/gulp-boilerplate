@@ -1,0 +1,69 @@
+@mixin ellipsis {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+@mixin ellipsis-y($num: 2) {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $num;
+  overflow: hidden;
+}
+
+@mixin trs($t: .3s, $dur: ease-in-out) {
+  transition: $t $dur;
+  @content;
+}
+
+@mixin hide-scrollbar {
+  ::-webkit-scrollbar {
+    display: none !important;
+    width: 0;
+    height: 0;
+  }
+}
+
+@mixin no-events {
+  pointer-events: none;
+  user-select: none;
+  touch-action: none;
+}
+
+@mixin placeholder($color: #999) {
+  // for webkit browser
+  ::-webkit-input-placeholder {
+    color: $color;
+  }
+
+  // for Mozilla Firefox 4 to 15
+  :-moz-placeholder {
+    color: $color;
+    opacity: 1;
+  }
+
+  // for Mozilla Firefox 19+
+  ::-moz-placeholder {
+    color: $color;
+    opacity: 1;
+  }
+
+  // for Internet Explorer 10+
+  :-ms-input-placeholder {
+    color: $color;
+  }
+}
+
+@mixin bg($name, $ext: "png", $path: $assets-path) {
+  background-image: url(#{$path}#{$name}.#{$ext});
+}
+
+@mixin bg-contain($name, $path: $assets-path) {
+  background: url(#{$path}#{$name}.png) no-repeat center;
+  background-size: contain;
+}
+
+@mixin bg-full($name, $path: $assets-path) {
+  background: url(#{$path}#{$name}.png) no-repeat center;
+  background-size: 100% 100%;
+}

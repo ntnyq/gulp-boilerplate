@@ -1,0 +1,153 @@
+# See docs at https://github.com/sasstools/sass-lint
+
+# 2 error
+# 1 warning
+# 0 off
+
+options:
+  formatter: stylish
+  merge-default-rules: false
+
+files:
+  include: 'src/scss/**/*.s+(a|c)ss'
+
+rules:
+  # Name Formats
+  # hyphenatedlowercase 中线连接的小写字母形式
+  variable-name-format: # 变量命名
+    - 2
+    -
+      allow-leading-underscore: false
+      convention: hyphenatedlowercase
+  class-name-format: # 类命名
+    - 2
+    -
+      allow-leading-underscore: false
+      convention: hyphenatedlowercase
+  function-name-format: # 方法命名
+    - 2
+    -
+      allow-leading-underscore: false
+      convention: hyphenatedlowercase
+  id-name-format: 0 # ID命名
+  mixin-name-format: # 混入命名
+    - 2
+    -
+      allow-leading-underscore: false
+      convention: hyphenatedlowercase
+  placeholder-name-format: # placeholder命名
+    - 2
+    -
+      allow-leading-underscore: false
+      convention: hyphenatedlowercase
+
+  # Line Spacing
+  empty-line-between-blocks: # 样式声明中间必须留空行
+    - 2
+    -
+      allow-single-line-rulesets: false # 禁止单行选择器带样式
+  one-declaration-per-line: 2 # 每行一条属性
+  single-line-per-selector: 2 # 每个选择器单独一行
+
+  # Extends
+  extends-before-declarations: 2 # 禁止@extend出现在属性声明后
+  extends-before-mixins: 2 # 禁止@extend出现在@include后
+  placeholder-in-extend: 2 # 强制@extends必须使用placeholder
+
+  # Mixins
+  mixins-before-declarations: 2 # 禁止@include 出现在属性声明后
+
+  # Disallows
+  no-attribute-selectors: 0 # 允许使用属性选择器
+  no-color-hex: 0 # 允许使用十六进制颜色代码
+  no-color-keywords: 2 # 禁止使用颜色关键词
+  no-color-literals: 0 # 禁止使用颜色字面量
+  no-combinators: 0 # 禁止使用组合选择器 如 > ~ +
+  no-css-comments: 2 # 禁止使用多行注释/**/
+  no-debug: 2 # 禁止使用@debug
+  no-disallowed-properties: 0 # 不禁止使用特定的属性
+  no-duplicate-properties: 2 # 禁止块内样式重复
+  no-empty-rulesets: 2 # 禁止出现空的选择器块
+  no-extends: 0 # 禁止使用 @extends
+  no-ids: 2 # 禁止使用id选择器
+  no-important: 0 # 不禁止使用!important
+  no-invalid-hex: 2 # 禁止出现无效的16进制数值
+  no-mergeable-selectors: 2 # 禁止可合并的选择器块 同样的选择器 不能出现2次
+  no-misspelled-properties: # 禁止出现拼写错误的属性
+    - 2
+    -
+      extra-properties: # 例外的表外属性
+        - 'touch-callout'
+        - 'overflow-scrolling'
+  no-qualifying-elements: # 禁止选择器附带id和class修饰
+    - 2
+    -
+      allow-element-with-attribute: true # 允许属性修饰，如input[type="checkbox"]
+  no-trailing-whitespace: 2 # 禁止行尾出现无用的空格
+  no-trailing-zero: 2 # 禁止数字后不必要的0 如 10.0
+  no-transition-all: 1 # all 为默认值 可不设置
+  no-universal-selectors: 0 # 可使用通配符选择器 *
+  no-url-protocols: 2 # 禁止url中出现域名和协议
+  no-vendor-prefixes: 0 # 禁止使用浏览器私有前缀
+  no-warn: 2 # 禁止使用 @warn
+  property-units: 0 # 允许使用任何单位
+
+  # Nesting
+  force-attribute-nesting: 0 # 强制属性选择器必须嵌套 例如 input { &[type="checkbox"] {} }
+  force-element-nesting: 2 # 禁止出现不嵌套的属性写法
+  force-pseudo-nesting: 0 # 强制伪元素必须嵌套
+
+  # Style Guide
+  attribute-quotes: # 强制属性选择器使用双引号
+    - 2
+    - style: double
+  bem-depth: 0 #
+  border-zero: # 使用border: none; 代替border: 0; 兼容性: IE >= 7 (避免渲染，节省内存)
+    - 2
+    -
+     convention: 'none'
+  brace-style: # 花括号风格
+    - 2
+    -
+      allow-single-line: false # 禁止单行出现块级 SassScript
+  clean-import-paths: 2 # 禁止@import带_和文件扩展名
+  empty-args: 2 # @mixin和@include 无参数或不使用参数时 可不写小括号
+  hex-length: 2 # 强制十六进制颜色值可缩写时候使用缩写形式 例 #333333 写成 #333
+  hex-notation: 2 # 强制十六进制颜色值字母必须使用小写
+  indentation: # 强制使用2个空格锁紧
+    - 2
+    -
+      size: 2
+  leading-zero: 0 # 属性值可以以0开始 // TODO 1 VsCode中Emmet补全会带0
+  nesting-depth: # 嵌套层级限制
+    - 2
+    -
+      max-depth: 4 # 最多可嵌套5层(包括最外层共计6层，包含引用父级的嵌套)
+  # https://github.com/sasstools/sass-lint/blob/develop/lib/config/property-sort-orders/recess.yml
+  # property-sort-order: # 强制属性排序
+  #   - 2
+  #   -
+  #     order: recess
+  property-sort-order: 0
+  pseudo-element: 0 # 允许伪元素使用单冒号
+  quotes: # 强制使用双引号
+    - 2
+    - style: double
+  shorthand-values: 2
+  url-quotes: 0 # 外链url可不加引号
+  variable-for-property: 2 # 属性的使用方式 可以使用变量 map-get 或者@function返回
+  zero-unit: 2 # 强制属性值为0时不允许带单位
+
+  # Inner Spacing
+  space-after-bang: 2 # 强制!后不能加空格
+  space-after-colon: 2 # 强制分号后需要加空格 width: 100px;
+  space-after-comma: 2 # 强制逗号后需要加空格
+  space-around-operator: 2 # 强制运算符两边需要加空格
+  space-before-bang: 2 # 强制!前需要加空格
+  space-before-brace: 2 # 强制大括号开始前需要加空格
+  space-before-colon: 2 # 禁止分号前出现空格
+  space-between-parens: 2 # 禁止方法的括号前后出现空格
+
+  # Final Items
+  final-newline: 2 # 强制scss文件后需要附带一个空行
+  trailing-semicolon: 2 # 强制选择器块最后属性需要有分号

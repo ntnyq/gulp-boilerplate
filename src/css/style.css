@@ -1,7 +1,0 @@
-* { margin: 0; padding: 0; -webkit-box-sizing: border-box; box-sizing: border-box; }
-
-.box { width: 200px; height: 200px; border: 10px solid #374892; border-radius: 50%; }
-
-body { background-color: #f2f2f2; }
-
-img { max-width: 100%; }
