@@ -1,7 +1,0 @@
-@function px2rem($n) {
-  @return $n / 100 * 1rem;
-}
-
-@function z($n) {
-  @return $n * $aspect-ratio * 1px;
-}

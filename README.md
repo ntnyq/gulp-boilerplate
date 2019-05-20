@@ -1,64 +1,18 @@
-# gulp-boilerplate
+# Gulp Pug Template
 
-> Gulp项目自动化构建模板。
+基于 **[Gulp](https://gulpjs.com/)** 的 __PC端__ 项目模板。
 
 ## 集成功能
 
-> 模板内集成了大量的自动化构建的相关模块工具。
+* SCSS
+* Postcss
+* Base64
+* Babel
+* Imagemin
+* Clean-CSS
+* Autoprefixer
+* Uglify
 
-### 开发效率
+支持配置定制，使用 `yaml` 来编写配置文件。
 
-- sass
-- babel
-- browser-sync
-
-### 打包优化
-
-- imagemin
-- postcss
-- autoprefixer
-- base64
-
-### 风格检查
-
-- eslint
-- sass-lint
-- husky
-- lint-staged
-
-## 使用
-
-需要以下环境：
-
-1. nodejs
-2. yarn
-
-### 克隆仓库：
-
-``` bash
-$ git clone https://github.com/ntnyq/gulp-boilerplate.git
-```
-
-### 安装依赖
-
-> 在项目根目录下执行命令：
-
-``` bash
-$ yarn
-```
-
-### 开发环境
-
-``` bash
-$ yarn dev
-```
-
-### 打包
-
-``` bash
-$ yarn build
-```
-
-## License
-
-[MIT](./LICENSE)
+区分 __开发(development)__ 与 __产品(production)__ 环境。

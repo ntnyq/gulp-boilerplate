@@ -7,58 +7,9 @@ option {
   font: normal $font-size $font;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-weight: 400;
-}
-
-img {
-  display: block;
-  max-width: 100%;
-  margin: 0 auto;
-}
-
-a,
-p {
-  word-break: break-all;
-}
-
-.fl {
-  float: left;
-}
-
-.fr {
-  float: right;
-}
-
-.clearfix {
-  zoom: 1;
-
-  &:after {
-    content: "";
-    display: block;
-    clear: both;
-    overflow: hidden;
-  }
-}
-
 body {
   position: relative;
-  max-width: 750Px;
-  min-width: 320Px;
-  margin: 0 auto;
-  color: $primary-text-color;
-  overflow-x: hidden;
+  min-width: 1200px;
+  background-color: $global-bg-color;
+  color: $text-primary-color;
 }
-
-.bg-contain {
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-}
-
-@include hide-scrollbar;

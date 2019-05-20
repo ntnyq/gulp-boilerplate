@@ -1,11 +1,10 @@
-// See docs at https://github.com/babel/babel
+const presets = [
+  [
+    '@babel/preset-env',
+    {
+      modules: false
+    }
+  ]
+]
 
-module.exports = {
-  presets: [
-    ['@babel/env', {
-      modules: false,
-      useBuiltIns: false
-    }]
-  ],
-  plugins: []
-};
+module.exports = { presets }

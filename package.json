@@ -1,71 +1,61 @@
 {
-  "name": "gulp-boilterplate",
+  "name": "gulp-boilerplate",
   "version": "0.0.1",
-  "description": "A fe boilterplate base on gulp 4.x",
-  "main": "index.js",
+  "keywords": [
+    "gulp",
+    "scss",
+    "postcss",
+    "template",
+    "boilerpate",
+    "imagemin"
+  ],
+  "description": "A project boilterplate based on gulp 4.x.",
+  "main": "gulpfile.js",
+  "license": "MIT",
   "scripts": {
-    "start": "npm run dev",
     "dev": "gulp dev",
-    "build": "gulp build",
-    "lint:js": "eslint src/js/**/*.js --fix",
-    "lint:sass": "npm run fix:sass && sass-lint -v -q -o ./sass-error.html -f html",
-    "fix:sass": "sass-lint-auto-fix --debug"
+    "build": "gulp build"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged",
-      "commit-msg": ""
+      "pre-commit": "lint-staged"
     }
   },
   "lint-staged": {
-    "src/js/**/*.js": ["eslint --fix", "git add"],
-    "src/scss/**/*.scss": ["npm run lint:sass", "git add"]
+    "*.js": [
+      "prettier --write",
+      "git add"
+    ]
   },
-  "author": {
-    "name": "ntnyq",
-    "email": "ntnyq13@gmail.com"
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 version",
-    "not IE <= 8"
-  ],
-  "license": "MIT",
+  "author": "ntnyq <ntnyq13@gmail.com>",
   "devDependencies": {
-    "@babel/core": "^7.2.2",
-    "@babel/polyfill": "^7.2.5",
-    "@babel/preset-env": "^7.2.3",
-    "autoprefixer": "^9.4.4",
-    "babel-eslint": "^10.0.1",
-    "browser-sync": "^2.26.3",
-    "del": "^3.0.0",
-    "eslint-config-standard": "^12.0.0",
-    "eslint-plugin-import": "^2.14.0",
-    "eslint-plugin-node": "^8.0.1",
-    "eslint-plugin-promise": "^4.0.1",
-    "eslint-plugin-standard": "^4.0.0",
-    "gulp": "^4.0.0",
+    "@babel/core": "^7.4.4",
+    "@babel/preset-env": "^7.4.4",
+    "autoprefixer": "^9.5.1",
+    "browser-sync": "^2.26.5",
+    "fs-extra": "^8.0.0",
+    "gulp": "^4.0.2",
     "gulp-babel": "^8.0.0",
     "gulp-base64": "^0.1.3",
     "gulp-changed": "^3.2.0",
-    "gulp-clean-css": "^4.0.0",
-    "gulp-eslint": "^5.0.0",
-    "gulp-html-replace": "^1.6.2",
+    "gulp-clean-css": "^4.2.0",
+    "gulp-data": "^1.3.1",
+    "gulp-format-html": "^0.0.2",
+    "gulp-if": "^2.0.2",
     "gulp-imagemin": "^5.0.3",
     "gulp-load-plugins": "^1.5.0",
     "gulp-plumber": "^1.2.1",
     "gulp-postcss": "^8.0.0",
     "gulp-rename": "^1.4.0",
     "gulp-sass": "^4.0.2",
-    "gulp-sass-lint": "^1.4.0",
     "gulp-size": "^3.0.0",
-    "gulp-uglify": "^3.0.1",
-    "gulp-wait": "^0.0.2",
-    "husky": "^1.3.1",
+    "gulp-uglify": "^3.0.2",
+    "husky": "^2.2.0",
     "imagemin-mozjpeg": "^8.0.0",
-    "imagemin-pngquant": "^6.0.1",
-    "lint-staged": "^8.1.0",
-    "postcss-pxtorem": "^4.0.1",
-    "sass-lint-auto-fix": "^0.15.1"
-  }
+    "imagemin-pngquant": "^7.0.0",
+    "js-yaml": "^3.13.1",
+    "lint-staged": "^8.1.6",
+    "prettier": "^1.17.0"
+  },
+  "dependencies": {}
 }
