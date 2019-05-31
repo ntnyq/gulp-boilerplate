@@ -1,19 +1,25 @@
-# development server init base directory, default value is 'dev'
+# Development server init base directory, default value is 'dev'
 # Once you need custom it, be sure to add it into gitignore manually
 # devDir: temp
 
-# build files directory, default value is dist
+# Build files directory, default value is dist
 distDir: dist
 
-# config for sass
+# Config for sass
 sassConfig:
-  outputStyle: compressed
+  outputStyle: expanded
   precision: 5
   sourceComments: false
 
-# config for base64
+# Config for base64
 base64Config:
   extensions:
     - svg
     - png
+  deleteAfterEncoding: true
   maxImageSize: 8192 # 8kb
+  # Array of exclude file or regexp
+  # exclude:
+
+# Compress css & js file, transform small png to base64
+# minify: true
