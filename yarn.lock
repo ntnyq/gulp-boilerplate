@@ -3295,10 +3295,10 @@ gulp-data@^1.3.1:
     through2 "^2.0.0"
     util-extend "^1.0.1"
 
-gulp-format-html@^0.0.3:
-  version "0.0.3"
-  resolved "https://registry.npmjs.org/gulp-format-html/-/gulp-format-html-0.0.3.tgz#52c6d5097902e1963c7a3b3f031db7a39a5ab405"
-  integrity sha512-pOmtTG6UT0FY+ru7Ka1KDzmqHP/RUt3xeIQ5O8IpzNuOhOsUyIcp3AG2XrmHMc7fXnpeaytBH+Sux3loAGzWfA==
+gulp-format-html@^0.0.4:
+  version "0.0.4"
+  resolved "https://registry.npmjs.org/gulp-format-html/-/gulp-format-html-0.0.4.tgz#8f63f3befb31dbc1568f5ac61760be92f17b9b8d"
+  integrity sha512-lhZf0EnOswlOi5/Wam/Cpi001DKLof+Y4A2GLMPeykXJiQ3SA1PzLy3b1C+M37NbWhOCaTDXmR3d3hUbE9JC9g==
   dependencies:
     js-beautify "^1.10.0"
     through2 "^3.0.1"

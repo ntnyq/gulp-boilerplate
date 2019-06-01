@@ -54,7 +54,6 @@ function styles () {
         this.$emit('end')
       }))
       .pipe($.postcss())
-      .pipe($.base64(base64Config))
       .pipe($.if(isProduction() && minify, $.base64(base64Config)))
       .pipe($.if(isProduction(), $.banner(banner)))
       .pipe(gulp.dest(`src/css`))
@@ -97,7 +96,7 @@ function images () {
             verbose: false
           })))
       .pipe(gulp.dest(`${destDir()}/img`))
-      .pipe($.size({ title: 'Images total size:' }))
+      .pipe($.size({ title: 'Images total size' }))
   )
 }
 
