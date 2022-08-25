@@ -1,6 +1,5 @@
-@import "core/style";
-@import "common/style";
+@use "./core/style" as *;
 
 body {
-  color: red;
+  color: $primary-color;
 }

@@ -1,7 +1,0 @@
-$.WEBSITE = {
-  init() {}
-}
-
-$(() => {
-  $.WEBSITE.init()
-})

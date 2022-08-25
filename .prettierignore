@@ -1,6 +1,0 @@
-dist
-dev
-gulp
-src/static
-node_modules
-*.min.*
