@@ -1,5 +1,4 @@
-
-const message = `hello world`
+const message = `你好世界`
 const object = {
   message,
 }

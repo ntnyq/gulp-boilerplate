@@ -9,7 +9,7 @@ import gulpPlumber from 'gulp-plumber'
 
 const sass = gulpSass(dartSass)
 const isProduction = process.env.NODE_ENV === `production`
-const destDir = () => isProduction ? `dist` : `dist`
+const destDir = () => (isProduction ? `dist` : `dist`)
 
 const clean = () => fs.remove(destDir())
 
@@ -37,7 +37,25 @@ function images () {
     .pipe(gulp.dest(`${destDir()}/images`))
 }
 
-const sharedTask = gulp.parallel(styles, scripts, images)
+function statics () {
+  return gulp
+    .src(`src/static/**`, { since: gulp.lastRun(statics) })
+    .pipe(gulp.dest(`${destDir()}/static`))
+}
 
-exports.dev = gulp.series(clean, sharedTask)
+function watch () {
+  gulp.watch(`src/scss/**/*.scss`, styles)
+  gulp.watch(`src/js/**/*.js`, scripts)
+  gulp.watch(`src/images/**/*.{png,jpg,jpeg,gif}`, images)
+  gulp.watch(`src/static/**`, statics)
+}
+
+const sharedTask = gulp.parallel(
+  styles,
+  scripts,
+  images,
+  statics,
+)
+
+exports.dev = gulp.series(clean, sharedTask, watch)
 exports.build = gulp.series(clean, sharedTask)

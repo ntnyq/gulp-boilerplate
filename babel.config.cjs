@@ -7,6 +7,7 @@ module.exports = {
     [`@babel/preset-env`, { modules: false }],
   ],
 
+  // Preserve chinese while build
   generatorOpts: {
     jsescOption: {
       minimal: true,
