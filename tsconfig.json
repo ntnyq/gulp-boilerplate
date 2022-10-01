@@ -5,7 +5,6 @@
     "skipLibCheck": true,
     "allowJs": false,
     "lib": ["DOM", "DOM.Iterable", "ES2015"],
-    // "types": ["./types/gulp-banner.d.ts"],
     "typeRoots": ["./types"]
   },
   "exclude": [

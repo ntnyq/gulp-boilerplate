@@ -72,7 +72,19 @@ $.PortalCore.helpers = {
       .done(({ status, data }) => {
         if (utils.isDef(status) && utils.isDef(data)) {
           switch (status) {
+            case constants.HTTP_REQUEST_SUCCESS_CODE:
+              dfd.resolve(data)
+              break
+
+            case constants.HTTP_REQUEST_ERROR_CODE: {
+              !opts.noErrorTip && helpers.useTip(data.detail)
+              dfd.reject(data)
+              console.log(data) // Debug
+              break
+            }
+
             default:
+              helpers.useTip(tips.HTTP_RESPONSE_STATUS_UNEXPECTED)
               break
           }
         } else {
