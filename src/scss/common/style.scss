@@ -1,0 +1,11 @@
+// =================================
+//              通用样式
+// =================================
+
+@use "../core/style" as *;
+
+@forward "base/reset";
+@forward "base/atom";
+
+@forward "global/header";
+@forward "global/footer";
