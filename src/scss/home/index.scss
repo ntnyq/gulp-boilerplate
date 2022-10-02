@@ -2,4 +2,9 @@
 //               首页
 // ===================================
 
+@use "sass:map";
 @use "../core/style" as *;
+
+body {
+  background-color: map.get($colors, "primary");
+}

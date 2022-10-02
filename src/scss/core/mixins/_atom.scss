@@ -1,0 +1,39 @@
+@mixin clearfix {
+  zoom: 1;
+
+  &:after {
+    content: "";
+    display: block;
+    clear: both;
+    overflow: hidden;
+  }
+}
+
+@mixin responsive($percent: 100%) {
+  display: block;
+  max-width: $percent;
+  margin: 0 auto;
+  @content;
+}
+
+@mixin trs($time: 0.3s, $type: ease-out, $property: all) {
+  transition: $property $time $type;
+  @content;
+}
+
+@mixin abs-full($width: 100%, $height: 100%, $top: 0, $display: block) {
+  position: absolute;
+  top: $top;
+  left: 0;
+  display: $display;
+  width: $width;
+  height: $height;
+  @content;
+}
+
+@mixin hack-input-autofill($color: $text-primary-color) {
+  &:-webkit-autofill {
+    transition: background-color 9999s ease-in-out 0s;
+    -webkit-text-fill-color: $color !important;
+  }
+}

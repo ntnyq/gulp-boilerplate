@@ -1,0 +1,14 @@
+@mixin ellipsis {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+/* stylelint-disable */
+@mixin ellipsis-y($num: 2) {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $num;
+}
+/* stylelint-enable */

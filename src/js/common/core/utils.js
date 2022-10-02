@@ -3,7 +3,7 @@
  * @module common/core/utils
  */
 
-$.PortalView.utils = {
+$.PortalCore.utils = {
   noop () {},
 
   isFn (val) {

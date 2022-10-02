@@ -12,9 +12,11 @@ import gulpBase64 from 'gulp-base64'
 import gulpPostCSS from 'gulp-postcss'
 import gulpPlumber from 'gulp-plumber'
 import gulpCleanCSS from 'gulp-clean-css'
+import browserSync from 'browser-sync'
 
 const sass = gulpSass(dartSass)
 const isMinify = Boolean(process.env.MINIFY)
+const useServer = Boolean(process.env.SERVE)
 const isProduction = process.env.NODE_ENV === `production`
 
 const config = {
@@ -101,12 +103,32 @@ function statics () {
     .pipe(gulp.dest(`${destDir()}/static`))
 }
 
-function watch () {
+function htmls () {
+  return gulp
+    .src(`src/*.html`, { since: gulp.lastRun(htmls) })
+    .pipe(gulp.dest(destDir()))
+}
+
+function watch (done: () => void) {
   gulp.watch(`src/scss/**/*.scss`, styles)
   gulp.watch(config.globScripts, scripts)
   gulp.watch(config.globCore, core)
   gulp.watch(`src/images/**/*.{png,jpg,jpeg,gif}`, images)
   gulp.watch(`src/static/**`, statics)
+
+  if (!useServer) return done()
+  const browser = browserSync.create()
+  browser.init({
+    server: {
+      baseDir: destDir(),
+    },
+    serveStatic: [destDir()],
+  })
+  gulp.watch(`src/*.html`, htmls)
+  gulp.watch([`${destDir()}/**`, `!${destDir()}/static/**`])
+    .on(`change`, () => {
+      browser.reload()
+    })
 }
 
 const sharedTask = gulp.parallel(
@@ -117,5 +139,10 @@ const sharedTask = gulp.parallel(
   statics,
 )
 
-exports.dev = gulp.series(clean, sharedTask, watch)
+exports.dev = gulp.series(
+  clean,
+  sharedTask,
+  ...(useServer ? [htmls] : []),
+  watch,
+)
 exports.build = gulp.series(clean, sharedTask)

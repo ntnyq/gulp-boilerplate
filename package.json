@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "gulp dev",
+    "dev:serve": "cross-env SERVE=true gulp dev",
     "build": "cross-env NODE_ENV=production gulp build",
     "build:minify": "cross-env NODE_ENV=production MINIFY=true gulp build",
     "lint": "eslint .",
@@ -13,6 +14,7 @@
     "@babel/core": "^7.19.3",
     "@babel/preset-env": "^7.19.3",
     "@qxy/eslint-config-typescript": "^1.0.4",
+    "@types/browser-sync": "^2.26.3",
     "@types/fs-extra": "^9.0.13",
     "@types/gulp": "^4.0.9",
     "@types/gulp-babel": "^6.1.30",

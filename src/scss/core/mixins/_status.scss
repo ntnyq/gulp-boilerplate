@@ -1,0 +1,38 @@
+///
+// 混入 - 状态
+// ==================================
+
+@mixin hover-active {
+  &:hover,
+  &.is-active {
+    @content;
+  }
+}
+
+@mixin hover-focus {
+  &:hover,
+  &:focus {
+    @content;
+  }
+}
+
+@mixin when($state) {
+  @at-root {
+    &.is-#{$state} {
+      @content;
+    }
+  }
+}
+
+@mixin has($state) {
+  @at-root {
+    &.is-#{$state} {
+      @content;
+    }
+  }
+  @at-root {
+    &.has-#{$state} {
+      @content;
+    }
+  }
+}
