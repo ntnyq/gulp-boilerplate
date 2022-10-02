@@ -1,0 +1,24 @@
+
+name: CI
+
+on:
+  pull_request:
+    types: [closed]
+    branches:
+      - main
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - .vscode
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+
+      - run: yarn --frozen-lockfile
+      - run: yarn run build
+      - run: yarn run build:minify
