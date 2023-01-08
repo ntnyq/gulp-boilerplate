@@ -1,0 +1,17 @@
+{
+  "root": true,
+  "globals": {
+    "$": "readonly",
+    "jQuery": "readonly",
+    "layui": "readonly",
+    "Swiper": "readonly",
+    "echarts": "readonly",
+    "CryptoJS": "readonly"
+  },
+  "extends": [
+    "@qxy/typescript"
+  ],
+  "rules": {
+    "max-lines-per-function": ["error", 1000]
+  }
+}

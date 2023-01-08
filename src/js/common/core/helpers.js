@@ -76,12 +76,11 @@ $.PortalCore.helpers = {
               dfd.resolve(data)
               break
 
-            case constants.HTTP_REQUEST_ERROR_CODE: {
+            case constants.HTTP_REQUEST_ERROR_CODE:
               !opts.noErrorTip && helpers.useTip(data.detail)
               dfd.reject(data)
               console.log(data) // Debug
               break
-            }
 
             default:
               helpers.useTip(tips.HTTP_RESPONSE_STATUS_UNEXPECTED)
