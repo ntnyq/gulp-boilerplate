@@ -1,27 +1,23 @@
 {
+  "prettier.enable": true,
+  "eslint.enable": true,
+  "editor.formatOnSave": true,
   "eslint.validate": [
-    "javascript",
-    "typescript",
-    "javascriptreact",
-    "typescriptreact",
     "vue",
     "yaml",
     "html",
-    "markdown",
     "json",
     "jsonc",
-    "json5"
+    "json5",
+    "markdown",
+    "javascript",
+    "typescript",
+    "javascriptreact",
+    "typescriptreact"
   ],
-  "editor.formatOnSave": false,
   "editor.codeActionsOnSave": {
-    "source.eslint.fixAll": true
+    "source.eslint.fixAll": "explicit"
   },
   "cSpell.allowCompoundWords": true,
-  "cSpell.words": [
-    "echarts",
-    "htmls",
-    "jsesc",
-    "layui",
-    "swiper"
-  ]
+  "cSpell.words": ["browserslistrc", "echarts", "htmls", "jsesc", "layui", "swiper"]
 }

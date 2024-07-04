@@ -1,7 +1,9 @@
-import path from 'path'
+import process from 'node:process'
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
 import fs from 'fs-extra'
 import gulp from 'gulp'
-import dartSass from 'sass'
+import * as dartSass from 'sass'
 import gulpIf from 'gulp-if'
 import gulpSass from 'gulp-sass'
 import gulpBabel from 'gulp-babel'
@@ -17,22 +19,19 @@ import browserSync from 'browser-sync'
 const sass = gulpSass(dartSass)
 const isMinify = Boolean(process.env.MINIFY)
 const useServer = Boolean(process.env.SERVE)
-const isProduction = process.env.NODE_ENV === `production`
+const isProduction = process.env.NODE_ENV === 'production'
 
 const config = {
-  devTagretPath: `dist`,
-  buildTagretPath: `dist`,
+  devTagretPath: 'dist',
+  buildTagretPath: 'dist',
 
   // glob
   globCore: [
-    `src/js/common/core/start.js`,
-    `src/js/common/core/!(start|end).js`,
-    `src/js/common/core/end.js`,
+    'src/js/common/core/start.js',
+    'src/js/common/core/!(start|end).js',
+    'src/js/common/core/end.js',
   ],
-  globScripts: [
-    `src/js/**/*.js`,
-    `!src/js/common/core/*.js`,
-  ],
+  globScripts: ['src/js/**/*.js', '!src/js/common/core/*.js'],
 }
 const banner = `/*!
 ==================================================================
@@ -44,33 +43,35 @@ const banner = `/*!
 ==================================================================
 */
 `
-const resolve = (...args: string[]) => path.resolve(__dirname, ...args)
-const destDir = () => isProduction
-  ? config.buildTagretPath
-  : config.devTagretPath
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
+const resolve = (...args) => path.resolve(__dirname, ...args)
+const destDir = () => (isProduction ? config.buildTagretPath : config.devTagretPath)
 
-const clean = () => Promise
-  .all([`css`, `images`, `js`, `static`]
-    .map(dir => fs.remove(resolve(destDir(), dir))),
-  )
+const clean = () =>
+  Promise.all(['css', 'images', 'js', 'static'].map(dir => fs.remove(resolve(destDir(), dir))))
 
-function styles () {
+function styles() {
   return gulp
-    .src([`src/scss/**/*.scss`], { since: gulp.lastRun(styles) })
+    .src(['src/scss/**/*.scss'], { since: gulp.lastRun(styles) })
     .pipe(gulpPlumber())
-    .pipe(sass().on(`error`, sass.logError))
+    .pipe(sass().on('error', sass.logError))
     .pipe(gulpPostCSS())
-    .pipe(gulpIf(isMinify, gulpBase64({
-      extensions: ['svg', 'png'],
-      maxImageSize: 8 << 10, // 8kb
-    })))
+    .pipe(
+      gulpIf(
+        isMinify,
+        gulpBase64({
+          extensions: ['svg', 'png'],
+          maxImageSize: 8 << 10, // 8kb
+        }),
+      ),
+    )
     .pipe(gulpIf(isMinify, gulpCleanCSS()))
     .pipe(gulpIf(isProduction, gulpBanner(banner)))
-    .pipe(gulp.dest(`src/css`))
+    .pipe(gulp.dest('src/css'))
     .pipe(gulp.dest(`${destDir()}/css`))
 }
 
-function scripts () {
+function scripts() {
   return gulp
     .src(config.globScripts, { since: gulp.lastRun(scripts) })
     .pipe(gulpPlumber())
@@ -80,69 +81,59 @@ function scripts () {
     .pipe(gulp.dest(`${destDir()}/js`))
 }
 
-function core () {
+function core() {
   return gulp
     .src(config.globCore, { since: gulp.lastRun(core) })
     .pipe(gulpPlumber())
-    .pipe(gulpConcat(`core.js`))
+    .pipe(gulpConcat('core.js'))
     .pipe(gulpBabel())
     .pipe(gulpIf(isMinify, gulpUglify()))
     .pipe(gulpIf(isProduction, gulpBanner(banner)))
     .pipe(gulp.dest(`${destDir()}/js/common`))
 }
 
-function images () {
+function images() {
   return gulp
-    .src(`src/images/**/*.{png,jpg,jpeg,gif}`, { since: gulp.lastRun(images) })
+    .src('src/images/**/*.{png,jpg,jpeg,gif}', { since: gulp.lastRun(images) })
     .pipe(gulp.dest(`${destDir()}/images`))
 }
 
-function statics () {
+function statics() {
   return gulp
-    .src(`src/static/**`, { since: gulp.lastRun(statics) })
+    .src('src/static/**', { since: gulp.lastRun(statics) })
     .pipe(gulp.dest(`${destDir()}/static`))
 }
 
-function htmls () {
-  return gulp
-    .src(`src/*.html`, { since: gulp.lastRun(htmls) })
-    .pipe(gulp.dest(destDir()))
+function htmls() {
+  return gulp.src('src/*.html', { since: gulp.lastRun(htmls) }).pipe(gulp.dest(destDir()))
 }
 
-function watch (done: () => void) {
-  gulp.watch(`src/scss/**/*.scss`, styles)
+function watch(done) {
+  gulp.watch('src/scss/**/*.scss', styles)
   gulp.watch(config.globScripts, scripts)
   gulp.watch(config.globCore, core)
-  gulp.watch(`src/images/**/*.{png,jpg,jpeg,gif}`, images)
-  gulp.watch(`src/static/**`, statics)
+  gulp.watch('src/images/**/*.{png,jpg,jpeg,gif}', images)
+  gulp.watch('src/static/**', statics)
 
   if (!useServer) return done()
+
   const browser = browserSync.create()
+
   browser.init({
     server: {
       baseDir: destDir(),
     },
     serveStatic: [destDir()],
   })
-  gulp.watch(`src/*.html`, htmls)
-  gulp.watch([`${destDir()}/**`, `!${destDir()}/static/**`])
-    .on(`change`, () => {
-      browser.reload()
-    })
+
+  gulp.watch('src/*.html', htmls)
+  gulp.watch([`${destDir()}/**`, `!${destDir()}/static/**`]).on('change', () => {
+    browser.reload()
+  })
 }
 
-const sharedTask = gulp.parallel(
-  core,
-  styles,
-  scripts,
-  images,
-  statics,
-)
+const sharedTask = gulp.parallel(core, styles, scripts, images, statics)
 
-exports.dev = gulp.series(
-  clean,
-  sharedTask,
-  ...(useServer ? [htmls] : []),
-  watch,
-)
-exports.build = gulp.series(clean, sharedTask)
+export const dev = gulp.series(clean, sharedTask, ...(useServer ? [htmls] : []), watch)
+
+export const build = gulp.series(clean, sharedTask)

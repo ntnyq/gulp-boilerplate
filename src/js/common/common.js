@@ -8,7 +8,7 @@ $(() => {
   const $doc = $(document)
 
   $.PortalCommon = {
-    initImagePreview () {
+    initImagePreview() {
       $doc.on('click', 'img[data-image-preview]', function () {
         const $this = $(this)
         const group = $this.data('image-preview')
@@ -30,7 +30,7 @@ $(() => {
       })
     },
 
-    init () {
+    init() {
       this.initImagePreview()
     },
   }

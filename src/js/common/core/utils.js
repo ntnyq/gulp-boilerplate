@@ -4,17 +4,17 @@
  */
 
 $.PortalCore.utils = {
-  noop () {},
+  noop() {},
 
-  isFn (val) {
+  isFn(val) {
     return typeof val === `function`
   },
 
-  isDef (val) {
+  isDef(val) {
     return val !== undefined
   },
 
-  getUrlParams (url = window.location.href) {
+  getUrlParams(url = window.location.href) {
     const search = url.split(`?`)[1]
     if (!search) return {}
     return JSON.parse(
@@ -24,7 +24,7 @@ $.PortalCore.utils = {
         .replace(/=/g, '":"')}"}`,
     )
   },
-  formatTime (val, fmt = `yyyy-MM-dd`) {
+  formatTime(val, fmt = `yyyy-MM-dd`) {
     if (!val) return ``
 
     const isUnixTimeStamp = typeof val === `number` && String(val).length === 10
@@ -37,24 +37,19 @@ $.PortalCore.utils = {
       'h+': time.getHours(),
       'm+': time.getMinutes(),
       's+': time.getSeconds(),
-      'q+': ~~((time.getMonth() + 3) / 3),
+      'q+': Math.trunc((time.getMonth() + 3) / 3),
       S: time.getMilliseconds(),
     }
 
     if (/(y+)/.test(fmt)) {
-      fmt = fmt.replace(
-        RegExp.$1,
-        (`${time.getFullYear()}`).substr(4 - RegExp.$1.length),
-      )
+      fmt = fmt.replace(RegExp.$1, `${time.getFullYear()}`.slice(4 - RegExp.$1.length))
     }
 
     for (const k in obj) {
       if (new RegExp(`(${k})`).test(fmt)) {
         fmt = fmt.replace(
           RegExp.$1,
-          RegExp.$1.length === 1
-            ? obj[k]
-            : (`00${obj[k]}`).substr((`${obj[k]}`).length),
+          RegExp.$1.length === 1 ? obj[k] : `00${obj[k]}`.slice(`${obj[k]}`.length),
         )
       }
     }

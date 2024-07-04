@@ -7,13 +7,13 @@ $(() => {
   const { helpers } = $.PortalCore
 
   $.PortalView = {
-    initDemoBtn () {
+    initDemoBtn() {
       $(`#btn_demo`).on(`click`, () => {
         helpers.useTip(`测试交互`)
       })
     },
 
-    init () {
+    init() {
       this.initDemoBtn()
     },
   }

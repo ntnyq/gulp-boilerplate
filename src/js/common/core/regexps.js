@@ -3,6 +3,4 @@
  * @module common/core/regexps
  */
 
-$.PortalCore.regexps = {
-
-}
+$.PortalCore.regexps = {}

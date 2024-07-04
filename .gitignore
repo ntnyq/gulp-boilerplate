@@ -6,7 +6,3 @@ dist
 
 # Temp files
 src/css
-
-# We use yarn
-package-lock.json
-pnpm-*.yaml

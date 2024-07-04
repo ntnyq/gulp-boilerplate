@@ -3,6 +3,4 @@
  * @module common/core/envs
  */
 
-$.PortalCore.envs = {
-
-}
+$.PortalCore.envs = {}

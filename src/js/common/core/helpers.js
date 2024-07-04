@@ -5,57 +5,50 @@
 
 $.PortalCore.helpers = {
   // 扩展jQuery
-  extendJQuery () {
-    $.fn.extend({
-
-    })
+  extendJQuery() {
+    $.fn.extend({})
   },
 
-  useAppState () {
+  useAppState() {},
 
-  },
+  useStyle() {},
 
-  useStyle () {
+  useScript() {},
 
-  },
-
-  useScript () {
-
-  },
-
-  useHash () {
+  useHash() {
     const { helpers } = $.PortalCore
     const dfd = $.Deferred()
 
-    helpers.ajax({
-      url: `/utils/hash`,
-      hideLoading: true,
-    }).done(res => {
-      if (res) {
-        dfd.resolve(res)
-      } else {
-        dfd.reject(new Error(`No hash in response`))
-      }
-    }).fail(dfd.reject)
+    helpers
+      .ajax({
+        url: `/utils/hash`,
+        hideLoading: true,
+      })
+      .done(res => {
+        if (res) {
+          dfd.resolve(res)
+        } else {
+          dfd.reject(new Error(`No hash in response`))
+        }
+      })
+      .fail(dfd.reject)
 
     return dfd.promise()
   },
 
-  goRoute (path, {
-    delay,
-  } = {}) {
+  goRoute(path, { delay } = {}) {
     const { constants } = $.PortalCore
     setTimeout(() => {
       window.location.href = path
     }, delay || constants.GO_ROUTE_DEFAULT_DELAY)
   },
 
-  ajax (options) {
+  ajax(options) {
     const { constants, utils, helpers, tips } = $.PortalCore
     const defaultOptions = {
       timeout: constants.HTTP_REQUEST_TIMEOUT,
       dataType: `json`,
-      beforeSend (xhr) {
+      beforeSend(xhr) {
         const xCsrfToken = $(`meta[name="X-CSRF-TOKEN"]`).attr(`content`)
         xCsrfToken && xhr.setRequestHeader('X-CSRF-TOKEN', xCsrfToken)
       },
@@ -101,7 +94,7 @@ $.PortalCore.helpers = {
       })
   },
 
-  useTip (msg, opts = {}) {
+  useTip(msg, opts = {}) {
     const dfd = $.Deferred()
     const layerIndex = layui.layer.msg(msg, $.extend({}, opts))
 
@@ -109,7 +102,7 @@ $.PortalCore.helpers = {
     return dfd.promise()
   },
 
-  useAlert (content, opts = {}) {
+  useAlert(content, opts = {}) {
     const dfd = $.Deferred()
     const defaultOptions = {
       title: '提示',
@@ -127,7 +120,7 @@ $.PortalCore.helpers = {
     return dfd.promise()
   },
 
-  useConfirm (content, opts = {}) {
+  useConfirm(content, opts = {}) {
     const dfd = $.Deferred()
     const defaultOptions = {
       title: '提示',
@@ -154,9 +147,9 @@ $.PortalCore.helpers = {
     return dfd.promise()
   },
 
-  usePrompt () {},
+  usePrompt() {},
 
-  usePopContainer (content, opts = {}) {
+  usePopContainer(content, opts = {}) {
     const dfd = $.Deferred()
     const defaultOptions = {
       type: 1,
@@ -169,7 +162,7 @@ $.PortalCore.helpers = {
 
     layui.layer.open({
       content,
-      success () {
+      success() {
         dfd.resolve()
       },
       ...options,
