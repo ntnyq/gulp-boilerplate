@@ -1,25 +1,13 @@
 /**
- * @link https://github.com/superRaytin/gulp-banner
- */
-
-declare module 'gulp-banner' {
-  type GulpBannerOptions = Record<string, any>
-
-  declare function banner(comment: string, options?: GulpBannerOptions): NodeJS.ReadWriteStream
-
-  export = banner
-}
-
-/**
- * @link https://github.com/Wenqer/gulp-base64
+ * @see https://github.com/Wenqer/gulp-base64
  */
 
 declare module 'gulp-base64' {
   interface GulpBase64Options {
     baseDir?: string
-    extensions?: string[] | RegExp[]
+    extensions?: RegExp[] | string[]
     maxImageSize?: number
-    exclude?: string[] | RegExp[]
+    exclude?: RegExp[] | string[]
     debug?: boolean
   }
 

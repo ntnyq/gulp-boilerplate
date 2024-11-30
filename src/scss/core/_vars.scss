@@ -3,13 +3,22 @@
 // =================================
 
 @use "sass:map";
+@use "sass:color";
+@use "sass:string";
 
 // Font
 $font-family: () !default;
 $font-family: map.merge(
   (
-    "base": "" Helvetica Neue ", Helvetica, " PingFang SC ", " Hiragino Sans GB ", " Microsoft YaHei
-      ", Arial, sans-serif",
+    "base": (
+      "Helvetica Neue",
+      Helvetica,
+      "PingFang SC",
+      "Hiragino Sans GB",
+      "Microsoft YaHei",
+      Arial,
+      sans-serif,
+    ),
   ),
   $font-family
 );
@@ -32,8 +41,8 @@ $colors: (
 ) !default;
 $colors: map.merge(
   (
-    "primary-light": lighten(map.get($colors, "primary"), 50%),
-    "primary-lighter": lighten(map.get($colors, "primary"), 60%),
+    "primary-light": color.scale(map.get($colors, "primary"), $lightness: 50%),
+    "primary-lighter": color.scale(map.get($colors, "primary"), $lightness: 60%),
   ),
   $colors
 );

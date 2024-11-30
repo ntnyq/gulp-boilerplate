@@ -7,4 +7,13 @@
 
 body {
   background-color: map.get($colors, "primary");
+  font-family: map.get($font-family, "base");
+}
+
+.input {
+  @include placeholder;
+}
+
+.ellipsis-2 {
+  @include ellipsis-y(2);
 }

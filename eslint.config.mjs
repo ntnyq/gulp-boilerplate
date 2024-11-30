@@ -1,4 +1,4 @@
-import { ntnyq } from '@ntnyq/eslint-config'
+import { defineESLintConfig } from '@ntnyq/eslint-config'
 
 const globals = [
   // jQuery
@@ -9,7 +9,7 @@ const globals = [
   'layui',
 ]
 
-export default ntnyq([
+export default defineESLintConfig(
   {
     ignores: ['**/.browserslistrc'],
   },
@@ -21,4 +21,4 @@ export default ntnyq([
       },
     },
   },
-])
+)
