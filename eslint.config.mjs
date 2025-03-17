@@ -1,3 +1,5 @@
+// @ts-check
+
 import { defineESLintConfig } from '@ntnyq/eslint-config'
 
 const globals = [
@@ -11,6 +13,7 @@ const globals = [
 
 export default defineESLintConfig(
   {
+    depend: false,
     ignores: ['**/.browserslistrc'],
   },
   {

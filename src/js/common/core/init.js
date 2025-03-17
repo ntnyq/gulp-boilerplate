@@ -6,7 +6,8 @@
 $.PortalCore.init = () => {
   if (!$.PortalCore.helpers) return
 
-  typeof $.PortalCore.helpers.extendJQuery === 'function' && $.PortalCore.helpers.extendJQuery()
+  typeof $.PortalCore.helpers.extendJQuery === 'function'
+    && $.PortalCore.helpers.extendJQuery()
 
   window.addEventListener('load', () => {})
 }

@@ -43,14 +43,19 @@ $.PortalCore.utils = {
     }
 
     if (/y+/.test(fmt)) {
-      fmt = fmt.replace(RegExp.$1, `${time.getFullYear()}`.slice(4 - RegExp.$1.length))
+      fmt = fmt.replace(
+        RegExp.$1,
+        `${time.getFullYear()}`.slice(4 - RegExp.$1.length),
+      )
     }
 
     for (const k in obj) {
       if (new RegExp(`(${k})`).test(fmt)) {
         fmt = fmt.replace(
           RegExp.$1,
-          RegExp.$1.length === 1 ? obj[k] : `00${obj[k]}`.slice(`${obj[k]}`.length),
+          RegExp.$1.length === 1
+            ? obj[k]
+            : `00${obj[k]}`.slice(`${obj[k]}`.length),
         )
       }
     }

@@ -35,10 +35,15 @@ const config = {
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const resolve = (...args) => path.resolve(__dirname, ...args)
-const destDir = () => (isProduction ? config.buildTagretPath : config.devTagretPath)
+const destDir = () =>
+  isProduction ? config.buildTagretPath : config.devTagretPath
 
 const clean = () =>
-  Promise.all(['css', 'images', 'js', 'static'].map(dir => fs.remove(resolve(destDir(), dir))))
+  Promise.all(
+    ['css', 'images', 'js', 'static'].map(dir =>
+      fs.remove(resolve(destDir(), dir)),
+    ),
+  )
 
 function styles() {
   return gulp
@@ -92,7 +97,9 @@ function statics() {
 }
 
 function htmls() {
-  return gulp.src('src/*.html', { since: gulp.lastRun(htmls) }).pipe(gulp.dest(destDir()))
+  return gulp
+    .src('src/*.html', { since: gulp.lastRun(htmls) })
+    .pipe(gulp.dest(destDir()))
 }
 
 function watch(done) {
@@ -114,13 +121,20 @@ function watch(done) {
   })
 
   gulp.watch('src/*.html', htmls)
-  gulp.watch([`${destDir()}/**`, `!${destDir()}/static/**`]).on('change', () => {
-    browser.reload()
-  })
+  gulp
+    .watch([`${destDir()}/**`, `!${destDir()}/static/**`])
+    .on('change', () => {
+      browser.reload()
+    })
 }
 
 const sharedTask = gulp.parallel(core, styles, scripts, images, statics)
 
-export const dev = gulp.series(clean, sharedTask, ...(useServer ? [htmls] : []), watch)
+export const dev = gulp.series(
+  clean,
+  sharedTask,
+  ...(useServer ? [htmls] : []),
+  watch,
+)
 
 export const build = gulp.series(clean, sharedTask)

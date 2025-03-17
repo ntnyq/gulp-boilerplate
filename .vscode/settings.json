@@ -1,11 +1,18 @@
 {
-  "prettier.enable": true,
   "eslint.enable": true,
+  "prettier.enable": true,
   "editor.formatOnSave": true,
+  "prettier.configPath": "./prettier.config.mjs",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit",
+    "source.organizeImports": "never",
+    "source.sortImports": "never"
+  },
   "eslint.validate": [
     "vue",
     "yaml",
-    "html",
+    "toml",
     "json",
     "jsonc",
     "json5",
@@ -15,9 +22,14 @@
     "javascriptreact",
     "typescriptreact"
   ],
-  "editor.codeActionsOnSave": {
-    "source.eslint.fixAll": "explicit"
-  },
   "cSpell.allowCompoundWords": true,
-  "cSpell.words": ["browserslistrc", "echarts", "htmls", "jsesc", "layui", "swiper"]
+  "cSpell.words": [
+    "browserslistrc",
+    "echarts",
+    "esbuild",
+    "htmls",
+    "jsesc",
+    "layui",
+    "swiper"
+  ]
 }
